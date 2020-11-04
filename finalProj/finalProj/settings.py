@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'loginpage.apps.LoginpageConfig',
     'viewgroups.apps.ViewgroupsConfig',
+    'viewclasses.apps.ViewclassesConfig',
+    'createaccount.apps.CreateaccountConfig',
+    'creategroup.apps.CreategroupConfig',
+    'addclass.apps.AddclassConfig',
 ]
 
 MIDDLEWARE = [
