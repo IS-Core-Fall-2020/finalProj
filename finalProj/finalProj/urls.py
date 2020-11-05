@@ -18,10 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('loginpage.urls')),
+    path('', include('loginpage.urls')),
     path('viewgroups/', include('viewgroups.urls')),
     path('viewclasses/', include('viewclasses.urls')),
-    path('createaccount/', include('createaccount.urls')),
-    path('creategroup/', include('creategroup.urls')),
-    path('addclass/', include('addclass.urls')),
 ]
