@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import viewgroupsPageView
+from .views import viewgroupsPageView, creategroupPageView
 
 urlpatterns = [
-    path('',viewgroupsPageView, name='viewgroups')
+    path('',viewgroupsPageView, name='viewgroups'),
+    path('creategroup/', creategroupPageView, name='creategroup'),
 ]
