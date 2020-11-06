@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def indexPageView(request) :
-    return HttpResponse('Login Page')
+    return render(request, 'account/login.html')
 
 def createaccountPageView(request) :
-    return HttpResponse('This is where you create an account')
+    return render(request, 'account/createaccount.html')
