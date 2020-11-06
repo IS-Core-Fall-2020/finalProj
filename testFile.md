@@ -1,1 +1,0 @@
-hey i dont know what a .md file is, but it seems pretty cool idk though what am i doing
