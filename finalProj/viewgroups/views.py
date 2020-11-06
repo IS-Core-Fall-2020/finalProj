@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def viewgroupsPageView(request) :
-    return HttpResponse('View Groups Here')
+    return render(request, 'groups/viewgroups.html')
 
 def creategroupPageView(request) :
-    return HttpResponse('This is where you create a new group')
+    return render(request, 'groups/creategroup.html')
