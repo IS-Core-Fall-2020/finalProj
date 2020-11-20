@@ -1,16 +1,11 @@
 from django.db import models
-from django.apps import apps
-
-#importing models from other apps
-Classes = apps.get_model('viewclasses', 'Classes')
-User = apps.get_model('loginpage', 'User')
 
 # Create your models here.
 class Group(models.Model):
 
     group_name = models.CharField(maxlength=30)
     group_description = models.CharField(maxlength=100)
-    classes = models.ForeignKey(Classes, on_delete=models.PROTECT)
+    classID = models.ForeignKey(viewclasses, on_delete=models.DO_NOTHING)
 
     def __str__(self) :
         return (self.group_name)
@@ -20,11 +15,11 @@ class Group(models.Model):
 
 class GroupMember(models.Model):
     is_owner = models.BooleanField()
-    group = models.ForeignKey(Group, on_delete=models.PROTECT)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    groupID = models.ForeignKey(viewgroups, on_delete=model.DO_NOTHING)
+    personID = models.ForeignKey(loginpage, on_delete=model.DO_NOTHING)
 
     def __str__(self) :
-        return (self.user)
+        return (self.personID)
 
     class Meta:
         db_table = 'group_members'

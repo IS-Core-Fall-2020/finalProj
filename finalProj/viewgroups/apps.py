@@ -1,4 +1,4 @@
-from django.apps import AppConfig
+Lenfrom django.apps import AppConfig
 
 
 class ViewgroupsConfig(AppConfig):
