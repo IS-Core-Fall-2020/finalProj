@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime, timedelta
 
 # Create your models here.
 
@@ -51,10 +50,3 @@ class GroupMember(models.Model):
 
     class Meta :
         db_table = 'group_members'
-
-class Assignment(models.Model) :
-
-    assign_name = models.CharField(max_length=30)
-    assign_description = models.CharField(max_length=250)
-    assign_completion = models.BooleanField()
-    assign_duedate = models.DateField(default=datetime.today, blank=True)

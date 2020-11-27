@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,34 +6,6 @@
     <title>Welcome</title>
 </head>
 <body>
-    <section class="about-section text-center" id="login">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2 class="text-white mb-4">Login Page</h2>
-                    <p class="text-white-50">
-                        Welcome to our website. Here you can login and begin using your account
-                    </p>
-                </div>
-            </div>
-            <img class="img-fluid" src="{% static 'img/ipad.png' %}" alt="" />
-        </div>
-    </section>
-    <section class='login_box'>
-        <div class='container'>
-            <div class='row'>
-                <p class='text-center'>
-                    Login
-                    <form><br><br>
-                        <label>Username:</label>
-                        <input type='text'><br>
-                        <label>Password:</label>
-                        <input type='password'><br>
-                    </form>
-                </p>
-            </div>
-        </div>
-    </section>
+    <p>Log in to your account here!</p>
 </body>
 </html>
-{% endblock %}
