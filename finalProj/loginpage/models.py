@@ -21,10 +21,11 @@ class User(models.Model):
 
 class Classes(models.Model):
 
+    class_name = models.CharField(max_length=20, default='No_Name')
     class_description = models.CharField(max_length=100)
 
     def __str__(self) :
-        return (self.class_description)
+        return (self.class_name)
 
     class Meta :
         db_table = 'classes'
@@ -59,3 +60,10 @@ class Assignment(models.Model) :
     assign_description = models.CharField(max_length=250)
     assign_completion = models.BooleanField()
     assign_duedate = models.DateField(default=datetime.today, blank=True)
+    class_id = models.ForeignKey(Classes, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return(self.assign_name)
+
+    class Meta :
+        db_table = 'assignments'
