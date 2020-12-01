@@ -1,0 +1,35 @@
+<!--Registration page-->
+
+{% extends 'base.html' %}
+<!--This will inherit the main structure of the base.html-->
+{% load static %}
+
+
+
+{% block backgroundImg %}                                                                               <!--Make sure to put static in front of static files!!!!-->
+<div class="page-header header-filter blur-filter" data-parallax="true" style="background-image: url( {% static 'img/about.jpg'%}  );">
+{% endblock %}
+
+
+{% block mainTitle %}
+<h1 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">Registration</h1>
+{% endblock %}
+
+
+{% block subTitle %}
+<!--<h2 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">Welcome to my personal website!</h2>-->
+
+{% endblock %}
+
+
+
+{% block mainBody %}
+
+<h3 style='text-align: left'>Register a New User</h3>
+    <form style='text-align: left' method="POST" action=>
+        {% csrf_token %}
+        {{form}}
+    <input type="submit" name="Create User">
+    </form>
+
+{% endblock %}

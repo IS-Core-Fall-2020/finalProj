@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'learningsweet',
         'USER': 'postgres',
         'PASSWORD': getpass(),
-        'HOST': 'localhost'
+        'HOST': 'localhost',
         }
 }
 
