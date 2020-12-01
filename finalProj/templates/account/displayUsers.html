@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="about-section text-center" id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class='container'>
+                    {% for u in User %}
+                    <p>
+                        {{u.first_name}}
+                        {{u.last_name}}
+                        {{u.user_name}}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
