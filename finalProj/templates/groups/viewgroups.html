@@ -17,6 +17,24 @@
                         This is where you view the groups that you are a part of
                     </p>
                 </h2>
+
+            </div>
+        </div>
+    </section>
+    <section class="about-section text-center" id="login">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class='container'>
+                        {% for g in Group %}
+                        <p>
+                            {{g.group_name}}
+                            {{g.group_description}}
+                            {{g.classes}}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </section>

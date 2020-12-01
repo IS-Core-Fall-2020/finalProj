@@ -12,7 +12,7 @@ def userPageView(request) :
     data = User.objects.all()
 
     context = {
-        'users' : data
+        'user' : data
     }
 
     return render(request, 'account/displayUsers.html', context)
