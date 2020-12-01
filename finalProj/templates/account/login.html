@@ -1,42 +1,46 @@
+<!--HOME page-->
+
 {% extends 'base.html' %}
+<!--This will inherit the main structure of the base.html-->
 {% load static %}
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<body>
-    <section class="about-section text-center" id="login">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2 class="text-white mb-4">Login Page</h2>
-                    <p class="text-white-50">
-                        Welcome to our website. Here you can login and begin using your account
-                    </p>
-                </div>
-            </div>
-            <img class="img-fluid" src="{% static 'img/ipad.png' %}" alt="" />
-        </div>
-    </section>
-    <section class='login_box'>
-        <div class='container'>
-            <div class='row'>
-                <p class='text-center'>
-                    Login
-                    <form><br><br>
-                        <label>Username:</label>
-                        <input type='text'><br>
-                        <label>Password:</label>
-                        <input type='password'><br>
-                    </form>
-                </p>
-            </div>
-        </div>
-    </section>
-</body>
-</html>
+
+
+
+{% block backgroundImg %}                                                                               <!--Make sure to put static in front of static files!!!!-->
+<div class="page-header header-filter blur-filter" data-parallax="true" style="background-image: url( {% static 'img/about.jpg'%}  );">
+{% endblock %}
+
+
+{% block mainTitle %}
+<!--<h1 style= "color: navy;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;"><i>Learning Sweet</i></h1>-->
+<img class="img-responsive" src="{% static 'img/LSweetW.png' %}" alt="LS">
+{% endblock %}
+
+
+{% block subTitle %}
+<!--<h2 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">Welcome to my personal website!</h2>-->
+
+{% endblock %}
+
+
+
+{% block mainBody %}
+<div style=" column-width: 400px;">
+    <div class="container">
+        <h4>
+            Welcome to Learning Sweet <br>
+            We strive to make Learning Suite not suck so much <br>
+            Here you can login and begin using your account 
+        <h4>
+
+        <form><br><br>
+            <label>Username:</label>
+            <input type='text'><br>
+            <label>Password:</label>
+            <input type='password'><br>
+        </form>
+        Don't have a login? Create one <a href="{% url 'register'%}">here.</a>
+    </div>
+</div>
+
 {% endblock %}

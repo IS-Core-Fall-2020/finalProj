@@ -82,8 +82,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'learningsweet',
         'USER': 'postgres',
-        'PASSWORD': getpass(),
-        'HOST': 'localhost'
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': 5433
         }
 }
 
