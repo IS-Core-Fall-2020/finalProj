@@ -7,8 +7,8 @@ from loginpage.models import Group, User
 #@login_required(login_url='login')
 def viewgroupsPageView(request) :
 
-    username = request.GET['username']
-    password = request.GET['password']
+    username = request.POST['username']
+    password = request.POST['password']
 
     user = authenticate(username = username, password = password)
 
