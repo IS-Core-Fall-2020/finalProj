@@ -131,4 +131,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'finalProj/static')
 ]
 
+# myEd 21.7 --- for model images
+MEDIA_URL = '/media/'
+
+#removed BASE_DIR so that media will just be in the Project root directory
+MEDIA_ROOT = os.path.join('media')      
+
 LOGIN_REDIRECT_URL = '/'

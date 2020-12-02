@@ -27,17 +27,43 @@
 
 <h2>Group Info</h2>
 
-    <form name='createGroup' method='post'>
+    <form name='createGroup' method='post' action="{% url 'newgroup' %}">
         {% csrf_token %}
         <label for='groupName'>Group Name: </label>
         <input type="text" name='groupName' id='groupName'><br><br>
         <label for='groupDesc'>Group Description: </label>
         <input type="text" name='groupDesc' id='groupDesc'>
-        <label for='user'>user: </label>
-        <input type="text" name='user' id='user'>
-        <label for='user'>user: </label>
-        <input type="text" name='user' id='user'>
-        <button type="submit" href="{% url 'viewgroups' %}">Create Group</button>
+       
+        <select name='user1' id='user1'>
+            <option value=" "> </option>
+            {% for u in user_list %}
+            <option value="{{ u }}">{{ u }}</option>
+            {% endfor %}
+        </select>
+
+        <select name='user2' id='user2'>
+            <option value=" "> </option>
+            {% for u in user_list %}
+            <option value="{{ u }}">{{ u }}</option>
+            {% endfor %}
+        </select>
+
+        <select name='user3' id='user3'>
+            <option value=" "> </option>
+            {% for u in user_list %}
+            <option value="{{ u }}">{{ u }}</option>
+            {% endfor %}
+        </select>
+
+        <select name='user4' id='user4'>
+            <option value=" "> </option>
+            {% for u in user_list %}
+            <option value="{{ u }}">{{ u }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Create Group</button>
     </form>
+    
 
 {% endblock %}

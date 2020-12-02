@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Classes, Group#, UserProfile#, GroupMember
-from django.contrib.auth.models import User
+from loginpage.models import Group, Assignment, UserPic
 # Register your models here.
 
+
+admin.site.register(Group)
+admin.site.register(Assignment)
+admin.site.register(UserPic)

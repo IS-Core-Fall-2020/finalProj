@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 
 def indexPageView(request) :
-    return render(request, 'account/login.html')
+    return render(request, 'account/index.html')
 
 #def createaccountPageView(request) :
     #return render(request, 'account/createaccount.html')
