@@ -14,7 +14,18 @@ def viewgroupsPageView(request) :
     
         }
 
-    return render(request, 'groups/viewgroups.html', context)
+    if user is not None:
+        group_queryList = Group.objects.all()
+
+        context = {
+            'group_list': group_queryList,
+
+            }
+
+        return render(request, 'groups/viewgroups.html', context)
+    
+    else: 
+        return render(request, 'account/login.html')
 
 def creategroupPageView(request) :
     return render(request, 'groups/creategroup.html')
