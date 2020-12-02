@@ -33,12 +33,13 @@
             Here you can login and begin using your account 
         <h4>
 
-        <form method='post' action="{% url 'viewgroups' %}"><br><br>
+        <form method='POST' action="{% url 'viewgroups' %}"><br><br>
             <label>Username:</label>
             <input id='username' name='username' type='text'><br>
             <label>Password:</label>
             <input id='password' name='password' type='password'><br>
             <button type='submit'>Login</button>
+            {% csrf_token %}
         </form>
         Don't have a login? Create one <a href="{% url 'register'%}">here.</a>
     </div>

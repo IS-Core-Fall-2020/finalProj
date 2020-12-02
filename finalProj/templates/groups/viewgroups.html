@@ -41,5 +41,9 @@
         
     {% endfor %}
 
+    <div>Click here to create a new group!</div>
+    <form action="{% url 'creategroup' %}">
+    <button type="submit">Create a New Group</button>
+    </form>
 
 {% endblock %}
