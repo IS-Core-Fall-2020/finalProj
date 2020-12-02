@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import viewgroupsPageView, creategroupPageView
+
+from . import views
 
 urlpatterns = [
-    path('',viewgroupsPageView, name='viewgroups'),
-    path('creategroup/', creategroupPageView, name='creategroup'),
+    path('', views.groupsPageView, name='viewgroups'),
+    path('creategroup/', views.createGroupPageView, name='creategroup'),
+    path('newgroup/', views.createGroup, name='newgroup'),
 ]
