@@ -27,11 +27,13 @@
 
 <h2>Group Info</h2>
 
-    <form name='createGroup' method='post' action="">
+    <form name='createGroup' method='post' action="{% url 'newgroup' %}">
+        {% csrf_token %}
         <label for='groupName'>Group Name: </label>
         <input type="text" name='groupName' id='groupName'><br><br>
         <label for='groupDesc'>Group Description: </label>
         <input type="text" name='groupDesc' id='groupDesc'>
+        <button type="submit">Create Group</button>
     </form>
 
 {% endblock %}
