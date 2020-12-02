@@ -5,15 +5,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from loginpage.models import Classes, Group#, GroupMember
 
-@login_required(login_url='/')
+@login_required(login_url='/accounts/login')
 def viewgroupsPageView(request) :
-    
-    username = request.POST['username']
-    password = request.POST['password']
-
-    user = authenticate(username = username, password = password)
-
-    login(request, user)
 
     group_filterList = Group.objects.filter(user = request.user)
     
