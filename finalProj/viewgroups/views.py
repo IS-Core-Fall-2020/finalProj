@@ -1,15 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from loginpage.models import Group
+from django.contrib.auth.models import User
+from loginpage.models import Classes, Group#, GroupMember
 
-#@login_required(login_url='login')
+@login_required(login_url='/')
 def viewgroupsPageView(request) :
-    group_queryList = Group.objects.all()
-
+    
+    group_filterList = Group.objects.filter(user = request.user)
+    
     context = {
-        'group_list': group_queryList,
-
+        'group_list': group_filterList,
+    
         }
 
     return render(request, 'groups/viewgroups.html', context)

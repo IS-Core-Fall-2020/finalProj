@@ -29,17 +29,24 @@
 
     {% for group in group_list %}
         
-        <!--
-            <td>
-                <a href="/group/{{ group.group_name }}/">
-            </td>
-            -->
+        
             <div>ID: {{ group.id }}</div>
             <div>{{ group.group_name }}</div>
-        
+            <div>Group Members: {{ group.username.title }}</div>
             <br>
-        
-    {% endfor %}
 
+            <br>
+     
+    {% endfor %}
+    <br>
+<!--
+        {% for user in  user_list %}
+            <div>User ID: {{ user.id }}</div>
+            <div>Username {{ user.username.title }}</div>
+            <div>Email {{ user.email }}</div>
+        {% endfor %}
+-->
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+{{group_list.user.id}}
 
 {% endblock %}

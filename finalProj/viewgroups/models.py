@@ -1,8 +1,6 @@
 from django.db import models
-from loginpage.models import Group, GroupMember, User
-
-from loginpage.models import Group
-
-
+from loginpage.models import User, Classes, Group#, GroupMember
 
 #Create your models here.
+
+
