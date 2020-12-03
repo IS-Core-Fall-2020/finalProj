@@ -30,17 +30,21 @@
         
             <h4>Welcome to Learning Sweet</h4> 
             <p>Learning Sweet strives to increase group productivity by enabling you to better collaborate with your peers on group-based, and common assignments. </p>
-             <p>Designed specifically to enhance group affectiveness in the IS Junior Core, Learning Sweet allows you to share a combined assignment view.</p>
+             <p>Designed specifically to enhance group effectiveness in the IS Junior Core, Learning Sweet allows you to share a combined assignment view.</p>
+             <p>Students can use Learning Sweet to keep a pulse on each other's pace, and Professors can use Learning Sweet to make sure they don't plan overlapping tests - wow!</p>
              <p>Register, create a group, and invite your peers to begin!</p>
         
         
+        <div align="center">
+            <a class="btn btn-primary" href="{% url 'register'%}" style="background-color: #428BCA"><i class="material-icons">how_to_reg</i> Register</a>
+
+            <a class="btn btn-primary" href="{% url 'login' %}" style="background-color: #428BCA"><i class="material-icons">person</i> Login</a>
+
+            <a class="btn btn-default" href="{% url 'viewgroups' %}" style="background-color: #428BCA"><i class="material-icons">groups</i> View Groups</a>
+        </div>
         
         
-        <a class="btn btn-default" href="{% url 'viewgroups' %}" style="background-color: #428BCA">View Groups </a>
         
-        <a class="btn btn-primary" href="{% url 'login' %}" style="background-color: #428BCA">Login Here </a>
-        
-        <a class="btn btn-primary" href="{% url 'register'%}" style="background-color: #428BCA">Register Here </a>
 
     </div>
 </div>

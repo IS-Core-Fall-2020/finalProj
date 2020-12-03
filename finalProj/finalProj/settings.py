@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'loginpage.apps.LoginpageConfig',
     'viewgroups.apps.ViewgroupsConfig',
     'viewclasses.apps.ViewclassesConfig',
+    # pip install django-widget-tweaks --- and add here
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

@@ -17,7 +17,7 @@
 
 
 {% block subTitle %}
-<h3 style= "color: white;	-webkit-text-stroke: 1px #282828; text-shadow: 0px 4px 4px #282828;"><b>Only groups you have access to appear below. Reach out to the creator of a group if you want access to another group, or create your own!</b></h3>
+<h3 style= "color: white;	-webkit-text-stroke: 1px #282828; text-shadow: 0px 4px 4px #282828;"><b>Only groups you have access to appear below. You may reach out to members of other groups to request access to another group, or create your own!</b></h3>
 
 {% endblock %}
 
@@ -28,34 +28,45 @@
 
 
 
-<form style='text-align: right' action="{% url 'creategroup' %}">
-    <button class="btn btn-primary" style="background-color: #428BCA" type="submit">Create a New Group</button>
-</form>
+<div class="text-right">
+    <a class="btn btn-primary" style="background-color: #428BCA" href={% url 'newgroup' %} >Create a New Group</a>
+</div>
 
 
 
-<h2>Groups</h2>
+<h2 >Your Groups</h2>
 
     {% for group in group_list %}
-        
-        
-            <div>ID: {{ group.id }}</div>
-            <div>{{ group.group_name }}</div>
-            <div>Group Members: {{ group.username.title }}</div>
-            <br>
+        <div class="main main-raised" style='margin: 50px'>
+            <div class='container' style='margin: 20px; '>
+                    <br>
+                    <h3>{{ group.group_name }}</h3> 
+                    <hr style= "margin-right:40px">
+                
+                    
+               
+                    <div>ID: {{ group.id }}</div>
+                    <div>Description: {{ group.group_description }}</div>
 
-            <br>
-     
+                    <hr style= "margin-right:40px">
+
+                    <div><b>Group Members</b> ID / Name:</div>
+                    <div style=" column-width: 175px;">
+                        {% for user in group.user.all %}
+                            {{user.id}} / {{ user.username }} <br>
+                        {% endfor %}
+                     </div>
+                     <div style="text-align:center; margin-right:30px">
+                        <a href="/viewgroups/{{group.id}}/" ><i class="material-icons">meeting_room</i>View Group</a>
+                     </div>
+                     <div style="text-align:right; margin-right:30px">
+                           <a href="/viewgroups/editgroup/{{group.id}}/" ><i class="material-icons">create</i> Edit</a>
+                    </div>
+                
+                    <br>
+            </div>
+        </div>
     {% endfor %}
     <br>
-<!--
-        {% for user in  user_list %}
-            <div>User ID: {{ user.id }}</div>
-            <div>Username {{ user.username.title }}</div>
-            <div>Email {{ user.email }}</div>
-        {% endfor %}
--->
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-{{group_list.user.id}}
 
 {% endblock %}
