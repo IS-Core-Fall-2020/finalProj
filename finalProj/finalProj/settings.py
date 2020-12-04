@@ -39,6 +39,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path, os
 from getpass import getpass
+import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,12 +50,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mwm%sh8&*0t2+!8b)^y)qe59guyw1$p=i16@t8^zlv92m9*s*g'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'learningsweet.herokuapp.com']
 
 
 # Application definition
@@ -68,10 +72,8 @@ INSTALLED_APPS = [
     'loginpage.apps.LoginpageConfig',
     'viewgroups.apps.ViewgroupsConfig',
     'viewclasses.apps.ViewclassesConfig',
-    # pip install django-widget-tweaks --- and add here
     'widget_tweaks',
-    # pip install django-bootstrap-datepicker-plus -- and add here, see forms page for readme
-    #'bootstrap_datepicker_plus',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'finalProj.urls'
@@ -111,13 +114,14 @@ WSGI_APPLICATION = 'finalProj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'learningsweet',
+        'NAME': 'learningsweet2',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': 'pudg3ster',
         'HOST': 'localhost',
-        'PORT': 5433
         }
 }
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -161,6 +165,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'finalProj/static')
 ]
+#if having problems with static files, uncomment out this
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 # myEd 21.7 --- for model images
 MEDIA_URL = '/media/'
@@ -173,3 +179,5 @@ LOGOUT_REDIRECT_URL = '/accounts/login'
 
 #theming
 CRISPY_TEMPLATE_PACK="bootstrap4"
+
+django_heroku.settings(locals())
