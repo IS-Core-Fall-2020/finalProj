@@ -170,3 +170,6 @@ MEDIA_ROOT = os.path.join('media')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login'
+
+#theming
+CRISPY_TEMPLATE_PACK="bootstrap4"
