@@ -50,8 +50,9 @@
                     <br><br>
                     <h4>Due Date:</h4>
                     {{ form.assign_duedate|append_attr:"class:form-control" }}
+                    <br>
+                    <div>If an invalid date is used, instead of creating an error, Learning Sweet will discard the assignment.</div>
 
-                    
                     {% comment %} This little guy forces the assignment to be set to the group ID of the group initializing it, there's probably a better way to do this...  but it works rightttt {% endcomment %}
                      <div style=display:none>   {{ form.group }} </div>
                    
