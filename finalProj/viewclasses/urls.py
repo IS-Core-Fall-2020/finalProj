@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import viewclassesPageView, addclassPageView
+from . import views
 
 urlpatterns = [
-    path('', viewclassesPageView, name='viewclasses'),
-    path('addclass/', addclassPageView, name='addclass'),
-]
+    path('<int:groupID>/', views.assignPageView, name='viewassign'),
+    path('edit/<int:assignID>/', views.editAssignPageView, name='editassign'),
+    path('edit/', views.editAssignPageView, name='newassign'),
+]   

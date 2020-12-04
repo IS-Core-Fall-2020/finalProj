@@ -3,54 +3,55 @@
 
 {% comment %} https://pypi.org/project/django-widget-tweaks/ {% endcomment %}
 
-{% comment %} Dynamically changes to either create a new group, or edit/delete a group. Depending on the type of parameters that are passed when accessing the page. {% endcomment %}
+{% comment %} Dynamically changes to either create a new assignment, or edit/delete an assignment. Depending on the type of parameters that are passed when accessing the page. {% endcomment %}
 
 {% block backgroundImg %}                                                                            
-<div class="page-header header-filter blur-filter" data-parallax="true" style="background-image: url( {% static 'img/byucampus.jpg'%}  );">
+<div class="page-header header-filter blur-filter" data-parallax="true" style="background-image: url( {% static 'img/byuLibrary.jpg' %}  );">
 {% endblock %}
 
 
 {% block mainTitle %}
-<h1 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">{% if parameter %} Edit Group {{parameter.id}}'s Attributes{% else %}Create a New Group{% endif %}</h1>
+<h1 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">{% if parameter %} Edit {{parameter.assign_name}}'s Attributes{% else %}Create a New Assignment{% endif %}</h1>
 {% endblock %}
 
-
+{% comment %} 
 {% block subTitle %}
 <h3 style= "color: white;	-webkit-text-stroke: 1px #282828; text-shadow: 0px 4px 4px #282828;"><b>{% if parameter %}Change the attributes of group {{parameter.group_name}}{% else %}Assign Attributes to a Group{% endif %}</b></h3>
 
-{% endblock %}
+{% endblock %} 
+{% endcomment %}
 
 
 
 {% block mainBody %}
-<h2>Current Group Info</h2>
-   <form role="form" action="/viewgroups/editgroup{% if parameter %}/{{ parameter.id }}{% endif %}/" method="POST" >
+{% if parameter %}
+    <h2>Current Assignment Info</h2>
+{% else %}
+    <h2>New Assignment Info</h2>
+{% endif %}
+   <form role="form" action="/viewassignments/edit{% if parameter %}/{{ parameter.id }}{% endif %}/" method="POST" >
         <div class="main main-raised" style='margin: 50px'>
             <div class='container' style='margin: 20px;'>
                 <br>
-                <h3>{{ group.group_name }}</h3> 
+                <h3>{{ parameter.assign_name }}</h3> 
                 <div style= "margin-right:40px">
                     {% csrf_token %}
                     {% comment %} Themeing / styling widget_tweaks makes the forms not look so ugly {% endcomment %}
                     {% load widget_tweaks %}
                     {% comment %} form was sent in dictionary context to webpage {% endcomment %}
 
-                    <h4>Group Name:</h4>
-                    {{ form.group_name|append_attr:"class:form-control" }}
+                    <h4>Assignment Name:</h4>
+                    {{ form.assign_name|append_attr:"class:form-control"}}
                     <br><br>
-                    <h4>Group Description:</h4>
-                    {{ form.group_description|append_attr:"class:form-control" }}
-
-                    {% comment %} Custom form-control2 css class made to fix sizing issues {% endcomment %}
-                    <h4>Registered Learning Sweet Users to add to group: (Alphabetical)</h4>
-                    <div align="center" style=" column-width: 200px;">
+                    <h4>Assignment Description:</h4>  {{ parameter.id }}
+                    {{ form.assign_description|append_attr:"class:form-control" }}
                     <br><br>
-                        <div>ctrl + select multiple users to add to your group.</div>
-                        <div>Remember to <b>add yourself</b> to the group, or else you won't have access!</div>
-                        
-                        {{ form.user|append_attr:"size:15"}}
-
-                        
+                    {{ form.assign_completion }} <span> Completed </span>
+                    <br><br>
+                    <h4>Due Date:</h4>
+                    {{ form.assign_duedate|append_attr:"class:form-control" }}
+                   
+                    
                     </div>
                     <br><br><br>
 

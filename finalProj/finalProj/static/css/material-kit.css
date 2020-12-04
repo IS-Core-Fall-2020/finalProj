@@ -22,6 +22,27 @@
 }
 
 
+/*Custom Form Control for the Multi Select box (Default One was getting squished -- added size attribute)*/
+.form-control2 {
+  /*displays 20 records from Multi Select*/
+  size:20;
+  display: block;
+  width: 75%;
+  padding: 0.4375rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border: 1px solid #d2d2d2;
+  border-radius: 0;
+  box-shadow: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+}
+
+
+
 /*Custom Imported Bootstrap Range*/
 .custom-range {
   width: 100%;
@@ -2490,6 +2511,7 @@ pre code {
   border-radius: 0;
   box-shadow: none;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
 }
 
 .form-control::-ms-expand {

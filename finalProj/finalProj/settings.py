@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'viewclasses.apps.ViewclassesConfig',
     # pip install django-widget-tweaks --- and add here
     'widget_tweaks',
+    # pip install django-bootstrap-datepicker-plus -- and add here, see forms page for readme
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
