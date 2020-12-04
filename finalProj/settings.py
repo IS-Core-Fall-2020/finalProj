@@ -166,7 +166,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'finalProj/static')
 ]
 #if having problems with static files, uncomment out this
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 # myEd 21.7 --- for model images
 MEDIA_URL = '/media/'
