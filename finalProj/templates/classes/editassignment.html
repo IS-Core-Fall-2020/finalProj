@@ -10,8 +10,8 @@
 {% endblock %}
 
 
-{% block mainTitle %}
-<h1 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">{% if parameter %} Edit {{parameter.assign_name}}'s Attributes{% else %}Create a New Assignment{% endif %}</h1>
+{% block mainTitle %}                                                                       <!--checks which parameter was passed and changes the message-->
+<h1 style= "color: white;	-webkit-text-stroke: 0px #282828; text-shadow: 0px 4px 4px #282828;">{% if assignID %} Edit {{parameter.assign_name}}'s Attributes{% else %}Create a New Assignment{% endif %}</h1>
 {% endblock %}
 
 {% comment %} 
@@ -24,12 +24,12 @@
 
 
 {% block mainBody %}
-{% if parameter %}
+{% if assignID %}
     <h2>Current Assignment Info</h2>
 {% else %}
-    <h2>New Assignment Info</h2>
-{% endif %}
-   <form role="form" action="/viewassignments/edit{% if parameter %}/{{ parameter.id }}{% endif %}/" method="POST" >
+    <h2>New Assignment Info</h2>                    <!--When leaving the edit group page, if you came in with assignID (you were editing or deleting a record)-->
+{% endif %}                                     <!--Otherwise you only came in with a groupID, (just creating a new record) the combo helps route you correctly-->
+   <form role="form" action="/viewassignments/edit/{%if assignID %}{{assignID}}/{{groupID}}/{% else %}{{groupID}}/{% endif %}" method="POST" >
         <div class="main main-raised" style='margin: 50px'>
             <div class='container' style='margin: 20px;'>
                 <br>
@@ -43,24 +43,29 @@
                     <h4>Assignment Name:</h4>
                     {{ form.assign_name|append_attr:"class:form-control"}}
                     <br><br>
-                    <h4>Assignment Description:</h4>  {{ parameter.id }}
+                    <h4>Assignment Description:</h4>
                     {{ form.assign_description|append_attr:"class:form-control" }}
                     <br><br>
                     {{ form.assign_completion }} <span> Completed </span>
                     <br><br>
                     <h4>Due Date:</h4>
                     {{ form.assign_duedate|append_attr:"class:form-control" }}
-                   
+
                     
+                    {% comment %} This little guy forces the assignment to be set to the group ID of the group initializing it, there's probably a better way to do this...  but it works rightttt {% endcomment %}
+                     <div style=display:none>   {{ form.group }} </div>
+                   
+
+
                     </div>
                     <br><br><br>
 
 
                     {% comment %} Hides the delete button if there was no parameter passed because the forms will be blank and the delete button would not work correctly. {% endcomment %}
-                    {% if parameter %}
-                        <input class="btn btn-danger float-left"  type="submit" value="Delete" name="delete">
+                    {% if assignID %}
+                        <input style= "margin-right:40px" class="btn btn-danger float-left"  type="submit" value="Delete" name="delete">
                     {% endif %}
-                        <input class="btn btn-primary float-right"  type="submit" value="Save">
+                        <input style= "margin-right:40px" class="btn btn-primary float-right" style='background-color:#428BCA;' type="submit" value="Save">
 
 
 
@@ -126,9 +131,5 @@
 {% endblock %}
 
 {% block scripts %}
-    $(document).ready(function() {
-      $('#multiple-checkboxes').multiselect({
-        includeSelectAllOption: true,
-      });
-    });
+
 {% endblock %}

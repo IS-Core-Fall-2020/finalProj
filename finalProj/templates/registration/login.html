@@ -45,6 +45,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout'%}">
+            <i class="material-icons">sensor_door</i> Logout
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'register'%}">
             <i class="material-icons">how_to_reg</i> Register
           </a>
@@ -60,9 +65,9 @@
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           
           <div class="card card-login">
-            <div class="card-header card-header-primary text-center">
-              <h4 class="card-title">Login</h4>
-            </div>
+            
+              <h3 class="card-title" style='text-align:center; color:#343a40' >Login</h3>
+            
             <form method="post" style= 'text-align: center'>
             {% csrf_token %}
             {{ form.as_p }}

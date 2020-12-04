@@ -23,8 +23,9 @@ def groupsPageView(request) :
 
 
 #takes you to the edit groups page, filters by the selected group.
+@login_required(login_url='/accounts/login')
 def editGroupPageView(request, groupID = None) :
-    #loggedInUser = User.objects.filter(username = request.user)
+    loggedInUser = User.objects.filter(username = request.user)
     parameter = None
     if request.method == 'POST':
         #if there is a parameter being passed
@@ -45,8 +46,9 @@ def editGroupPageView(request, groupID = None) :
             #editing a group, grabs the UserGroupForm
             form = UserGroupForm(request.POST) #, initial={'user':loggedInUser}
             if form.is_valid:
+                
+                #form.save(commit=false)
                 form.save()
-
               
 
                 return HttpResponseRedirect('/viewgroups')
@@ -54,22 +56,23 @@ def editGroupPageView(request, groupID = None) :
         if groupID:
             parameter = Group.objects.get(id = groupID)
             #sends form and loads in the info from the parameter so you can see what you are editing
-            form = UserGroupForm(instance = parameter)
+            form = UserGroupForm(instance = parameter, initial={'user':loggedInUser})
 
         else: 
-            #generates a blank form when you are creating a new group
-            form = UserGroupForm()
+            #generates a blank form when you are creating a new group with the logged in user being automatically put into it
+            form = UserGroupForm(initial={'user':loggedInUser})
         
         #sends generated form and parameter (if there is one) to webpage
         context = {
             'form': form, 
-            'parameter': parameter
+            'parameter': parameter,
+            'loggedInUser': loggedInUser
         }
 
         return render(request, 'groups/editgroup.html', context)
 
 
-
+@login_required(login_url='/accounts/login')
 def newGroupView(request, groupID = None):
 
     parameter = None

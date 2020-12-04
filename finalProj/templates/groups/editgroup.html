@@ -46,9 +46,13 @@
                     <div align="center" style=" column-width: 200px;">
                     <br><br>
                         <div>ctrl + select multiple users to add to your group.</div>
-                        <div>Remember to <b>add yourself</b> to the group, or else you won't have access!</div>
+                        <br>
+                        <div>Learning Sweet automatically adds the group creator to a new group, so you do not have to worry about keeping yourself selected.</div>
                         
                         {{ form.user|append_attr:"size:15"}}
+
+                       {% comment %} Hides a select box where the logged in user is selected, so that you can never create a group that you are not in. {% endcomment %}
+                    <div style=display:none>   {{ form.user|append_attr:"size:15"}} </div>
 
                         
                     </div>
@@ -59,7 +63,7 @@
                     {% if parameter %}
                         <input class="btn btn-danger float-left"  type="submit" value="Delete" name="delete">
                     {% endif %}
-                        <input class="btn btn-primary float-right"  type="submit" value="Save">
+                        <input class="btn btn-primary float-right" style='background-color:#428BCA;' type="submit" value="Save">
 
 
 

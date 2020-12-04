@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 from loginpage.models import Group, Assignment
 from datetime import datetime, timedelta
-from bootstrap_datepicker_plus import DatePickerInput
+
 
 
 ##https://docs.djangoproject.com/en/3.1/topics/forms/
@@ -28,8 +28,8 @@ class AssignmentForm(forms.ModelForm) :
     assign_description = forms.CharField(max_length=250, label='Assignment Description')
     assign_completion = forms.CheckboxInput()
     assign_duedate = forms.DateField(label='Due Date', widget=forms.SelectDateWidget)
-    #group_id = forms.ChoiceField(queryset=Group.group_name.all())
+    group = forms.ModelChoiceField(queryset=Group.objects.all())
 
     class Meta:
         model = Assignment
-        fields = ('assign_name', 'assign_description', 'assign_completion', 'assign_duedate')
+        fields = ('assign_name', 'assign_description', 'assign_completion', 'assign_duedate', 'group')

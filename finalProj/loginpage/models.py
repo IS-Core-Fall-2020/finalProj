@@ -31,7 +31,7 @@ class Assignment(models.Model) :
     assign_description = models.CharField(max_length=250)
     assign_completion = models.BooleanField()
     assign_duedate = models.DateField(default=datetime.today, blank=True)
-    group_id = models.ForeignKey(Group, on_delete=models.PROTECT)
+    group = models.ForeignKey(Group, on_delete=models.PROTECT)
 
     def __str__(self):
         return(self.assign_name)

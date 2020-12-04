@@ -3,6 +3,6 @@ from . import views
 
 urlpatterns = [
     path('<int:groupID>/', views.assignPageView, name='viewassign'),
-    path('edit/<int:assignID>/', views.editAssignPageView, name='editassign'),
-    path('edit/', views.editAssignPageView, name='newassign'),
+    path('edit/<int:assignID>/<int:groupID>/', views.editAssignPageView, name='editassign'),
+    path('edit/<int:groupID>/', views.editAssignPageView, name='newassign'),
 ]   

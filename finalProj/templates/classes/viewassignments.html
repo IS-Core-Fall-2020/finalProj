@@ -25,12 +25,13 @@
 
 
 <div class="text-right">
-    <a class="btn btn-primary" style="background-color: #428BCA" href={% url 'newassign' %} >Create a New Assignment</a>
+    <a class="btn btn-primary" style="background-color: #428BCA" href={% url 'newassign' groupID=group.id %} >Create a New Assignment</a>
 </div>
 
 <h2>Assignments</h2>
-
+{% comment %} For loop displays all assignments of the current group {% endcomment %}
     {% for assign in assign_list %}
+    
         <div class="main main-raised" style='margin: 50px'>
             <div class='container' style='margin: 20px; '>
                     <br>
@@ -40,15 +41,12 @@
                         <h3 style='color:#428BCA;'>{{assign.assign_name}}</h3>
                         {% endif %}
                     <hr style= "margin-right:40px">
-                
-                    
-               
                     <div>Description: {{assign.assign_description}}</div>
 
                     <hr style= "margin-right:40px">
 
                     <div><b>Assignment Details</b></div>
-                   
+                        {% comment %} Changes color and message based off of whether the assignment is complete or not {% endcomment %}
                         Due: {{assign.assign_duedate}}<br>
                         {% if assign.assign_completion == False %}
                         <div style='color:red; align:right'>INCOMPLETE</div>
@@ -57,12 +55,13 @@
                         {% endif %}
                          <br>
                         <div style="text-align:right; margin-right:30px">
-                           <a href="/viewassignments/edit/{{assign.id}}/" ><i class="material-icons">create</i> Edit</a>
+                           <a href="/viewassignments/edit/{{assign.id}}/{{group.id}}" ><i class="material-icons">create</i> Edit</a>
                         </div>
                    
                     <br>
             </div>
         </div>
+    
     {% endfor %}
 
 {% endblock %}

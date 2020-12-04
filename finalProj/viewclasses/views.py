@@ -9,8 +9,8 @@ from django.contrib import messages
 
 @login_required(login_url='/accounts/login')
 def assignPageView(request, groupID) :
-    #displays only the assignments of the specific group, and orders the assignments by 
-    assign_filterList = Assignment.objects.filter(group_id = groupID).order_by('assign_duedate')
+    #displays only the assignments of the specific group, and orders the assignments by date from closest to furthest
+    assign_filterList = Assignment.objects.filter(group_id = groupID).order_by('-assign_duedate')
     group = Group.objects.get(id = groupID)
 
     context = {
@@ -22,42 +22,53 @@ def assignPageView(request, groupID) :
 
 
 #takes you to the edit Assignments page, filters by the selected Assignment.
-def editAssignPageView(request, assignID = None) :
+@login_required(login_url='/accounts/login')
+def editAssignPageView(request, assignID = None, groupID = None) :
     #loggedInUser = User.objects.filter(username = request.user)
     parameter = None
-    #groupID = Group.objects.get()
+    #are we posting data?
     if request.method == 'POST':
-        #if there is a parameter being passed
-        if assignID:
-            parameter = Assignment.objects.get(id=assignID)
-            if request.POST.get('delete'):
-                parameter.delete()
+            
+            #Is there an assignment parameter and group parameter? IE you are either editing an existing record, or deleting a record
+            if assignID and groupID:
+                parameter = Assignment.objects.get(id=assignID)
+                #if we are deleting the record
+                if request.POST.get('delete'):
+                    parameter.delete()
+                    
+                else:
+                #otherwise save the form with the data passed (edit)
+                    form = AssignmentForm(request.POST, instance = parameter)   
+                    #if an incorrect date is entered, the system will skip the assignment and reroute you back to the assigments page
+                    try: form.save()
+                    except ValueError :   
+                        pass
+                    return HttpResponseRedirect(f'/viewassignments/{groupID}/')
                 
+                return HttpResponseRedirect(f'/viewassignments/{groupID}/')
+            #New groups being created will follow this path because they don't leave edit page view with an assignment ID
             else:
-
-                form = AssignmentForm(request.POST, instance = parameter)   
-                form.save()
-               
-            return HttpResponseRedirect(f'/viewassignments/{parameter.group_id.id}')
-        else:
-            form = AssignmentForm(request.POST)
-            #form filled in correctly
-            if form.is_valid:
-                form.save()
-
-                return HttpResponseRedirect('/viewassignments/assignID')
+                form = AssignmentForm(request.POST)
+                #if an incorrect date is entered, the system will skip the assignment and reroute you back to the assigments page
+                try: form.save()
+                except ValueError :   
+                    pass
+                return HttpResponseRedirect(f'/viewassignments/{groupID}/')
     else:
         if assignID:
             parameter = Assignment.objects.get(id = assignID)
-            #sends form and loads in the info from the parameter so you can see what you are editing
-            form = AssignmentForm(instance = parameter)
+            #creates form and loads in the info from the parameter so you can see what you are editing --- only activates when there is an assignID being passed
+            form = AssignmentForm(instance = parameter, initial={'group': groupID})
 
         else: 
-            #generates a blank form when you are creating a new Assignment
-            form = AssignmentForm()
+            #generates a blank form when you are creating a new Assignment -- only activates when NO assignID is being passed (when we are making a new assignment)
+            parameter = Group.objects.get(id=groupID)
+            form = AssignmentForm(initial={'group': groupID})
         
         #sends generated form and parameter (if there is one) to webpage
         context = {
+            'assignID': assignID,
+            'groupID':groupID,
             'form': form, 
             'parameter': parameter
         }

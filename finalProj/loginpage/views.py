@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 
+
 def indexPageView(request) :
     return render(request, 'account/index.html')
 
@@ -17,3 +18,4 @@ def registerPage(request):
 
     context = {'form':form}
     return render(request, 'account/register.html', context)
+
